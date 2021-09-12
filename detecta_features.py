@@ -18,7 +18,7 @@ index_train = dfIdTrain.index
 index_val = dfIdVal.index
 
 # Pegar todas as features que existem em ./multi30k/features 
-onlyfiles = [f for f in listdir("./multi30k/features") if isfile(join("./multi30k/features", f))]
+onlyfiles = [f for f in listdir("./../multi30k/features") if isfile(join("./../multi30k/features", f))]
 features_indices_test, features_indices_test_list, features_indices_train, features_indices_train_list, features_indices_val, features_indices_val_list = [], [], [], [], [], []
 
 for i in range(0,len(onlyfiles)):
@@ -30,26 +30,26 @@ for i in range(0,len(onlyfiles)):
   if len(index_test[condition_test]) > 0:
     # Adicionar na lista de índices o índice referindo-se ao nome da feature
     features_indices_test.append(index_test[condition_test].tolist())
-    features_indices_test_list.append(features_indices_test[i][0])
+    features_indices_test_list.append(features_indices_test[-1][0])
 
   if len(index_train[condition_train]) > 0:
     features_indices_train.append(index_train[condition_train].tolist())
-    features_indices_train_list.append(features_indices_train[i][0])
+    features_indices_train_list.append(features_indices_train[-1][0])
 
   if len(index_val[condition_val]) > 0:
     features_indices_val.append(index_val[condition_val].tolist())
-    features_indices_val_list.append(features_indices_val[i][0])
+    features_indices_val_list.append(features_indices_val[-1][0])
 
 # Agora tenho uma lista com os indices para os quais existem features
-dfIdTest_fim = dfIdTest.iloc[features_indices_test_list]
-df1_fim = df1.iloc[features_indices_test_list]
-df2_fim = df2.iloc[features_indices_test_list]
-dfIdTrain_fim = dfIdTrain.iloc[features_indices_train_list]
-df3_fim = df3.iloc[features_indices_train_list]
-df4_fim = df4.iloc[features_indices_train_list]
-dfIdVal_fim = dfIdVal.iloc[features_indices_val_list]
-df5_fim = df5.iloc[features_indices_val_list]
-df6_fim = df6.iloc[features_indices_val_list]
+dfIdTest_fim = dfIdTest.iloc[sorted(features_indices_test_list)]
+df1_fim = df1.iloc[sorted(features_indices_test_list)]
+df2_fim = df2.iloc[sorted(features_indices_test_list)]
+dfIdTrain_fim = dfIdTrain.iloc[sorted(features_indices_train_list)]
+df3_fim = df3.iloc[sorted(features_indices_train_list)]
+df4_fim = df4.iloc[sorted(features_indices_train_list)]
+dfIdVal_fim = dfIdVal.iloc[sorted(features_indices_val_list)]
+df5_fim = df5.iloc[sorted(features_indices_val_list)]
+df6_fim = df6.iloc[sorted(features_indices_val_list)]
 
 dfIdTest_fim.to_csv('test_2016_flickr.order', index=False, header=False, columns=["id"]) 
 df1_fim.to_csv('test_2016_flickr.pt', index=False, header=False, columns=["portuguese"]) 
