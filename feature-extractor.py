@@ -170,7 +170,7 @@ if __name__ == '__main__':
     itd = iter(dataset)
     idxs = list(range(n_total))
     for idx in tqdm.tqdm(idxs, ncols=50):
-        orig_img_name = image_list[idx].split('/')[-1]
+        orig_img_name = image_list[idx].split('/')[-2] #alterei
         dump_fname = str(out_folder / orig_img_name) + dump_suffix
 
         try:
